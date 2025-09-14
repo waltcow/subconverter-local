@@ -1,0 +1,5 @@
+proxies:  
+  - {name: Dmit, server: dmit.gzpolpo.com, port: 8388, type: ss, cipher: 2022-blake3-aes-128-gcm, password: SLo6myXrBN21qCsJV+cjfw==}
+  - {name: Dmit-Hysteria2, server: dmit.gzpolpo.com, port: 443, type: hysteria2, password: ff0aff7a, alpn: [h3], sni: en.snu.ac.kr, skip-cert-verify: true, fast-open: true} 
+  
+  

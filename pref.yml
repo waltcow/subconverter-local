@@ -1,0 +1,143 @@
+common:
+  api_mode: false
+  api_access_token: ec9e5ab434662b3672c2f7a73ab8497b
+  default_url: []    
+  exclude_remarks: ["(Expire|GB|Reset|到期|剩余流量|时间|官网|产品|平台|备用|客服|禁止|倒卖|渠道|漏洞|德国|土耳其|梵蒂冈|Canada|澳门|印度|俄罗斯|澳大利亚|法国|英国|南极|梵蒂冈|爱尔兰|巴西|Britain)"]
+  include_remarks: []
+  enable_filter: true
+  filter_script: ""
+  default_external_config: "" # config/example_external_config.yml
+  base_path: base
+  clash_rule_base: base/all_base.tpl
+  surge_rule_base: base/all_base.tpl
+  surfboard_rule_base: base/all_base.tpl
+  mellow_rule_base: base/all_base.tpl
+  quan_rule_base: base/all_base.tpl
+  quanx_rule_base: base/quanx.conf
+  loon_rule_base: base/all_base.tpl
+  sssub_rule_base: base/all_base.tpl
+  proxy_config: NONE
+  proxy_ruleset: NONE
+  proxy_subscription: NONE
+  append_proxy_type: false
+
+userinfo:
+  stream_rule: 
+  - {match: "^剩余流量：(.*?)\\|总流量：(.*)$", replace: "total=$2&left=$1"}
+  - {match: "^剩余流量：(.*?) (.*)$", replace: "total=$1&left=$2"}
+  - {match: "^Bandwidth: (.*?)/(.*)$", replace: "used=$1&total=$2"}
+  - {match: "^.*剩余(.*?)(?:\\s*?)@(?:.*)$", replace: "total=$1"}
+  - {match: "^.*?流量:(.*?) 剩:(?:.*)$", replace: "total=$1"}
+  time_rule:
+  - {match: "^过期时间：(\\d+)-(\\d+)-(\\d+) (\\d+):(\\d+):(\\d+)$", replace: "$1:$2:$3:$4:$5:$6"}
+  - {match: "^到期时间(:|：)(\\d+)-(\\d+)-(\\d+)$", replace: "$1:$2:$3:0:0:0"}
+  - {match: "^Smart Access expire: (\\d+)/(\\d+)/(\\d+)$", replace: "$1:$2:$3:0:0:0"}
+  - {match: "^.*?流量:(?:.*?) 剩:(.*?)天$", replace: "left=$1d"}
+
+node_pref:
+  sort_flag: false
+  sort_script: ""
+  filter_deprecated_nodes: false
+  append_sub_userinfo: true
+  clash_use_new_field_name: true
+  clash_proxies_style: flow
+  rename_node:
+  - {import: snippets/rename_node.toml}
+
+managed_config:
+  write_managed_config: true
+  managed_config_prefix: "https://sub.waltcow.com"
+  config_update_interval: 86400
+  config_update_strict: false
+  quanx_device_id: ""
+
+surge_external_proxy:
+  surge_ssr_path: "" # /usr/bin/ssr-local
+  resolve_hostname: true
+
+emojis:
+  add_emoji: true
+  remove_old_emoji: true
+  rules:
+#  - {match: "(流量|时间|应急)", emoji: "🏳️‍🌈"}
+#  - {script: "function getEmoji(node){}"}
+#  - {script: "path:/path/to/script.js"}
+#  - {import: snippets/emoji.txt}
+
+rulesets:
+  enabled: true
+  overwrite_original_rules: false
+  update_ruleset_on_request: false
+  rulesets:
+  - {import: snippets/rulesets.txt}
+
+proxy_groups:
+  custom_proxy_group:
+  - {import: snippets/groups.txt}
+
+template:
+  template_path: ""
+  globals:
+  - {key: clash.http_port, value: 7890}
+  - {key: clash.socks_port, value: 7891}
+  - {key: clash.allow_lan, value: true}
+  - {key: clash.log_level, value: info}
+  
+aliases:
+  - {uri: /ocean/clash, target: "/getprofile?name=profiles/ocean/clash.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  - {uri: /ocean/clash_v2, target: "/getprofile?name=profiles/ocean/clash_v2.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+
+  - {uri: /reid/clash, target: "/getprofile?name=profiles/reid/clash.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+
+  - {uri: /ocean/ios, target: "/getprofile?name=profiles/ocean/ios.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  
+  - {uri: /water/clash, target: "/getprofile?name=profiles/water/clash.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+
+  - {uri: /hewei/clash, target: "/getprofile?name=profiles/hewei/clash.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  
+  - {uri: /bling/clash, target: "/getprofile?name=profiles/bling/clash.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  - {uri: /bling/ios, target: "/getprofile?name=profiles/bling/ios.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  
+  - {uri: /waltcow/clash, target: "/getprofile?name=profiles/waltcow/clash.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  - {uri: /waltcow/ios, target: "/getprofile?name=profiles/waltcow/ios.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  
+  - {uri: /bank/clash, target: "/getprofile?name=profiles/bank/clash.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  - {uri: /wownow/clash, target: "/getprofile?name=profiles/wownow/clash.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+
+  - {uri: /polpo/clash, target: "/getprofile?name=profiles/polpo/clash.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  - {uri: /polpo/simple, target: "/getprofile?name=profiles/polpo/simple.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  - {uri: /polpo/ios, target: "/getprofile?name=profiles/polpo/ios.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  
+  - {uri: /cheng/quan, target: "/getprofile?name=profiles/cheng/ios.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  - {uri: /cheng/clash, target: "/getprofile?name=profiles/cheng/clash.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  - {uri: /cheng/rocket, target: "/getprofile?name=profiles/cheng/rocket.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  
+  - {uri: /volinco/ios, target: "/getprofile?name=profiles/volinco/ios.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  - {uri: /volinco/clash, target: "/getprofile?name=profiles/volinco/clash.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  - {uri: /volinco/rocket, target: "/getprofile?name=profiles/volinco/rocket.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  
+  - {uri: /tou/clash, target: "/getprofile?name=profiles/tou/clash.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+  - {uri: /tou/ios, target: "/getprofile?name=profiles/tou/ios.ini&token=ec9e5ab434662b3672c2f7a73ab8497b"}
+
+
+server:
+  listen: 0.0.0.0
+  port: 25500
+  serve_file_root: ""
+
+advanced:
+  log_level: debug
+  print_debug_info: true
+  max_pending_connections: 10240
+  max_concurrent_threads: 4
+  max_allowed_rulesets: 0
+  max_allowed_rules: 0
+  max_allowed_download_size: 0
+  enable_cache: true
+  cache_subscription: 60
+  cache_config: 300
+  cache_ruleset: 21600
+  script_clean_context: true
+  async_fetch_ruleset: false
+  skip_failed_links: false
+

@@ -1,3 +1,5 @@
-subconverter
+subconverter*
 *.db
 cache
+node_modules
+dist

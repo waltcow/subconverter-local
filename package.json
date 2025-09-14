@@ -1,0 +1,11 @@
+{
+  "name": "subconverter",
+  "version": "1.0.0",
+  "description": "Subscription converter",
+  "scripts": {
+    "serve": "http-server ./links -p 8000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
